@@ -11,7 +11,7 @@ updateCopies(quantity) {if(this.copies + quantity >= 0 )
 {if (this.copies + quantity >= 0) {
     this.copies += quantity; 
 } else {console.log(`Copies can't be negative`);}
-}
+} // Updates copies of books and stops it from being 0 
 }
 }
 const book1 = new Book("The Great Gatsby", "F. Scott Fitzgerald", 123456, 5);
