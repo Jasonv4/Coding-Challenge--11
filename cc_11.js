@@ -24,9 +24,9 @@ console.log(book1.getDetails());
 
 
 //Task 2 Creating a Borrower class
-class Borrower { constructor(name, borrowerID ) {
+class Borrower { constructor(name, borrowerId ) {
     this.name = name;
-    this.borrowerID = borrowerID;
+    this.borrowerId = borrowerId;
     this.borrowedBooks = [];
 } // Creating borrower class
 borrowBook(book) {
@@ -58,9 +58,29 @@ class Library { constructor(){
         else {console.log (`This ISBN is already in use`)}
     } // Adds books to library
 listBooks() {this.books.forEach(book => console.log(book.getDetails()))}
+//Task 4 Implement Book Borrowing
+lendBook (borrowerId, isbn) {
+
+const book = this.books.find(book => book.isbn === isbn);
+const borrower = this.borrowers.find(borrower => borrower.borrowerId === borrowerId);
+if (book && borrower)
+ {if (book.copies > 0 )
+ {book.updateCopies(-1); 
+    // Updates the number of copies
+    borrower.borrowBook(book);
+ } else {console.log("Copies for this book unavailable")}
+ } else {console.log ("Could not find borrower or book")}
+}
 
 }
 const library = new Library();
 library.addBook(book1);
 library.listBooks();
 // Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 4"
+library.lendBook(201, 123456);
+console.log(book1.getDetails());
+// Expected output: "Title: The Great Gatsby, Author: F. Scott Fitzgerald, ISBN: 123456, Copies: 3"
+console.log(borrower1.borrowedBooks);
+// Expected output: ["The Great Gatsby"]
+
+
